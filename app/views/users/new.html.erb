@@ -1,25 +1,22 @@
 <h1>New User Form</h1>
 
-<form action="/users" method="post" accept-charset="UTF-8" data-turbo="false">
-  <!-- Authenticity token for CSRF protection -->
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-
+<%= form_with model: @user, local: true do |form| %>
   <div>
-    <label for="username">Username:</label><br>
-    <input type="text" name="user[username]" id="username">
+    <%= form.label :username, "Your user name here:" %><br>
+    <%= form.text_field :username, placeholder: "Your cool username", value: "sample_user" %>
   </div>
 
   <div>
-    <label for="email">Email:</label><br>
-    <input type="email" name="user[email]" id="email">
+    <%= form.label :email %><br>
+    <%= form.email_field :email, placeholder: "example@example.com" %>
   </div>
 
   <div>
-    <label for="password">Password:</label><br>
-    <input type="password" name="user[password]" id="password">
+    <%= form.label :password %><br>
+    <%= form.password_field :password %>
   </div>
 
   <div>
-    <input type="submit" value="Submit Form">
+    <%= form.submit "Submit Form" %>
   </div>
-</form>
+<% end %>
